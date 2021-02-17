@@ -1,0 +1,1 @@
+"C:\MySoftWare\needs\Notepad++\notepad++.exe" %1 %2
