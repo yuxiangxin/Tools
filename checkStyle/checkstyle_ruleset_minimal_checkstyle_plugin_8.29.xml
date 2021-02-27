@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="fileExtensions" value="java"/>
+    <module name="SuppressWithPlainTextCommentFilter">
+        <property name="offCommentFormat" value="CHECKSTYLE\:OFF\:\s*(\w+)"/>
+        <property name="onCommentFormat" value="CHECKSTYLE\:ON\:\s*(\w+)"/>
+        <property name="checkFormat" value="$1"/>
+    </module>
+    <module name="FileLength">
+        <property name="max" value="2000"/>
+    </module>
+    <module name="FileTabCharacter"/>
+    <module name="RegexpSingleline">
+        <property name="format" value="^ \* Copyright \(c\) Huawei Technologies Co., Ltd. [\d]{4}(\-[\d]{4})\. All rights reserved\.$"/>
+        <property name="minimum" value="1"/>
+        <property name="maximum" value="1"/>
+        <property name="message" value="编程规范-规则2.4: 版权缺失或者格式不正确"/>
+        <property name="severity" value="error"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(boolean|Boolean)\s(\bisNot?|\bmIsNot?)[A-Z](a-zA-Z0-9=;,\s)*"/>
+        <property name="message" value="编程规范-建议1.1 避免使用否定的布尔变量名"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(boolean|Boolean)\s((m[^I])|(mI[^s])|(s[^I])|(sI[^s])|[^msiI]|([iI][^sS]))(?![a-zA-Z0-9=;,\s]*\()"/>
+        <property name="message" value="编程规范-建议1.2 布尔变量名或方法以is开头(has have does do did will should can may must could等疑问助动词也可以，Android允许m作为疑问助动词前缀)"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(boolean|Boolean)\s(((is)[^A-Z0-9])|(IS[^A-Z_0-9]+))"/>
+        <property name="message" value="编程规范-建议1.2 布尔变量名以is后面字符必须是大写字母或者数字"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[^:]//[^\s]"/>
+        <property name="message" value="编程规范-规则2.6: 请添加空格（单行注释符与注释内容间以空格分割）"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="case [\s\S]+[:]//"/>
+        <property name="message" value="编程规范-规则2.6: 请添加空格（单行注释符与注释内容间以空格分割）"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="(\*)+[\u4E00-\u9FA5A-Za-z0-9_]"/>
+        <property name="message" value="编程规范-规则2.6: 请添加空格（单行注释符与注释内容间以空格分割）"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[\u4E00-\u9FA5A-Za-z0-9_]((\*)+)/"/>
+        <property name="message" value="编程规范-规则2.6: 请添加空格（单行注释符与注释内容间以空格分割）"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value=".*;//"/>
+        <property name="message" value="编程规范-规则2.6:请添加空格（分号和单行注释符间以空格分割）"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="^\s*//[^\u4e00-\u9fa5]*(\s*;|\{|\})$"/>
+        <property name="message" value="编程规范-规则2.7 : 不用的代码段直接删除，不要注释掉"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="\s+(Byte|Short|Integer|Long|Float|Double|Character|Boolean)\s+"/>
+        <property name="message" value="编程规范-建议4.2: 基本类型优于包装类型，注意合理使用包装类型"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="(LOG|LOGGER|log|logger)\.(fatal|error|warn|info|debug).+[\u4e00-\u9fa5]+"/>
+        <property name="message" value="编程规范-规则7.7: 禁止用中文打印日志"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="^\s*return null;\s*$"/>
+        <property name="message" value="建议不要返回null! 1)编程规范-建议5.5: 集合请返回Collections.emptyXXX() 2)编程规范-建议8.6.2: 其他请使用JAVA 8 Optional特性代替"/>
+    </module> 
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="\s+$"/>
+        <property name="message" value="编程规范-建议3.7 行末或空行不能有空格, 请去除多余空格"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="[A-Za-z0-9=+-;:\?\*]\s{2,}[\u4e00-\u9fa5A-Za-z0-9=+-:\?]"/>
+        <property name="message" value="编程规范-建议3.8 禁止插入空格水平对齐(包括多余括号)。"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="((&lt;|&gt;|&gt;=|&lt;=|==|!=)\s*(Double\.NaN|Float\.NaN))|((Double\.NaN|Float\.NaN)\s*(&lt;|&gt;|&gt;=|&lt;=|==|!=))"/>
+        <property name="message" value="编程规范-规则4.4 禁止尝试与NaN进行比较运算,相等操作使用Double或Float的isNaN方法"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="^.*for\s+[(](float|double).*$"/>
+        <property name="message" value="编程规范-规则4.1 :不能使用浮点数做循环变量"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="long\s*\w+\s*=\s*\d[\d\*\s]*\s*;"/>
+        <property name="message" value="编程规范-规则3.11: 数字字面量以大写字母为后缀(long类型变量请显示填写L，或者改为int类型)"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="\([a-zA-Z\s,&lt;&gt;\\.]+\.{3}[a-zA-Z\s,&lt;&gt;\\.]*\)"/>
+        <property name="message" value="编程规范-建议5.3 谨慎使用可变数量参数的方法。"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="\.ordinal\(\)"/>
+        <property name="message" value="编程规范-建议8.6.3 避免枚举常量序号的产生依赖于ordinal()方法。"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="\w{65,}"/>
+        <property name="message" value="编程规范-规则1.2 名字长度不能超过64个字符。"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="\s[a-z](\s|;)"/>
+        <property name="message" value="编程规范-规则1.2 名字长度至少2个字符（循环变量、异常变量e当作误报忽略）。"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value=" [!=]= (false|true)"/>
+        <property name="message" value="编程规范-规则8.3.1 冗余不简洁"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="(false|true) [!=]= "/>
+        <property name="message" value="编程规范-规则8.3.1 冗余不简洁"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="(0|1) [!=]= "/>
+        <property name="message" value="编程规范-建议8.2.3 表达式的比较，应当遵循左侧倾向于变化、右侧倾向于不变的原则。"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="^\s*\*\s*@apiNote\s*$"/>
+        <property name="message" value="编程规范-规则2.3 推荐使用JDK1.8新的tag:@implSpec,@apiNote和@implNote，如果确实不需要请删除tag"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="\.toArray\([\s\w]+\[[^0]\]"/>
+        <property name="message" value="编程规范-规则8.7.1 将集合转为数组时使用toArray()方法且不带参数或者参数是类型相同零长度的数组"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="catch\s+[(][^)]*[)]\s+[{]\s+[}]"/>
+        <property name="message" value="编程规范-规则7.1 : 不要通过一个空的catch块忽略异常"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="(LOG|LOGGER|log|logger)\.(fatal|error|warn|info|debug)\((([^&quot;].+)|&quot;.+&quot;[^,])\s*(.*)\+"/>
+        <property name="message" value="编程规范-规则7.6 : 日志应分等级，对info及以下，使用条件形式或者使用占位符的方式"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="/[*]+\s+(private|public|protected|static)+[^(]*[(]+[^)]*[)]+\s+[{]+[^\*/]*[\*/]+"/>
+        <property name="message" value="编程规范-规则2.7 : 不用的代码段直接删除，不要注释掉"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(null == )|(null != )|([A-Z_]+ (&lt;|&gt;|&gt;=|&lt;=|==|!=)+)"/>
+        <property name="message" value="编程规范-建议8.2.3 表达式的比较，应当遵循左侧倾向于变化、右侧倾向于不变的原则。"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(\{\s*[\r\n]\s*[\r\n]\s*[\r\n])|(\s*[\r\n]\s*[\r\n]\s*[\r\n]\s*\})"/>
+        <property name="message" value="编程规范-建议3.6 大括号内部首尾，不需要空行。"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(^\s*[\r\n]){2,}"/>
+        <property name="message" value="编程规范-建议3.6 减少不必要的空行，保持代码紧凑(最多一个空行)。"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="Ltd. ([0-9]{4}).*[\r\n](.*[\r\n])+.*@since\s+\1"/>
+        <property name="minimum" value="1"/>
+        <property name="maximum" value="1"/>
+        <property name="message" value="请检查版权声明中其实年份与@since中年份是否一致"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="\*/[\r\n]{3,}(public|private|protected)\s+(class|interface|enum)\s"/>
+        <property name="message" value="编程规范-规则2.2:顶层类（接口或者枚举）头与类（接口或者枚举）首行不应该有空行"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="\*/[\r\n]{3,}(class|interface|enum)\s"/>
+        <property name="message" value="编程规范-规则2.2:顶层类（接口或者枚举）头与类（接口或者枚举）首行不应该有空行"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="^\s+\*\s+[^\*@]+[\r\n]\s+\*\s*\@"/>
+        <property name="message" value="编程规范-规则2.6:注释正文与其下的各个Javadoc tag之间加1个空行"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="(;|\})(\n|\r\n) +// "/>
+        <property name="message" value="编程规范-规则2.6:注释与上面的代码之间加一个空行，但是如果上面已经是本范围（一般是个大括号），则不用加空行"/>
+    </module>
+    <module name="LineLength">
+        <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
+        <property name="max" value="120"/>
+    </module>
+    <module name="TreeWalker">
+        <module name="JavadocType">
+        </module>
+        <module name="JavadocMethod">
+            <property name="scope" value="protected"/>
+            <property name="allowMissingParamTags" value="false"/>
+            <property name="validateThrows" value="true"/>
+            <property name="allowMissingReturnTag" value="false"/>
+        </module>
+        <module name="MissingJavadocMethod">
+            <property name="scope" value="protected"/>
+            <property name="allowMissingPropertyJavadoc" value="true"/>
+        </module>
+        <module name="JavadocVariable">
+            <property name="scope" value="public"/>
+        </module>
+        <module name="JavadocStyle">
+            <property name="checkFirstSentence" value="false"/>
+            <property name="checkEmptyJavadoc" value="true"/>
+            <property name="checkHtml" value="false"/>
+        </module>
+        <module name="WriteTag">
+            <property name="tag" value="@since"/>
+            <property name="tagFormat" value="^\d{4}-\d{2}-\d{2}$"/>
+            <property name="tagSeverity" value="ignore"/>
+        </module>
+        <module name="AnonInnerLength">
+            <property name="max" value="60"/>
+        </module>
+        <module name="MethodLength">
+            <property name="countEmpty" value="false"/>
+            <property name="max" value="50"/>
+        </module>
+        <module name="ParameterNumber">
+            <property name="max" value="5"/>
+        </module>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="OperatorWrap"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <module name="MultipleVariableDeclarations"/>
+        <module name="GenericWhitespace"/>
+        <module name="WhitespaceAround">
+            <property name="tokens" value="COLON,NOT_EQUAL,QUESTION,DIV,DIV_ASSIGN,BXOR,BXOR_ASSIGN,MINUS,LCURLY,RCURLY,STAR,STAR_ASSIGN,TYPE_EXTENSION_AND,BAND,LAND,BAND_ASSIGN,MOD,MOD_ASSIGN,PLUS,PLUS_ASSIGN,LT,SL,SL_ASSIGN,LE,ASSIGN,MINUS_ASSIGN,EQUAL,GT,GE,SR,SR_ASSIGN,BSR,BSR_ASSIGN,BOR,BOR_ASSIGN,LOR,LITERAL_ASSERT,LITERAL_ASSERT,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,SLIST,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE"/>
+        </module>
+        <module name="TodoComment">
+            <property name="format" value="(TODO)|(FIXME)" />
+        </module>
+        <module name="ModifierOrder"/>
+        <module name="EmptyBlock"/>
+        <module name="LeftCurly">
+        </module>
+        <module name="NeedBraces"/>
+        <module name="RightCurly">
+            <property name="option" value="alone"/>
+            <property name="tokens" value="LITERAL_FINALLY, LITERAL_ELSE, CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="printStackTrace"/>
+            <property name="message" value="编程规范-规则7.4 : 不允许打印堆栈信息"/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="System.out.print.*"/>
+            <property name="message" value="编程规范-规则7.4 : 不允许使用控制台输出"/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="MagicNumber">
+            <property name="ignoreNumbers" value="0, 1"/>
+            <property name="ignoreHashCodeMethod" value="true"/>
+            <property name="ignoreAnnotation" value="true"/>
+        </module>
+        <module name="IllegalThrows">
+            <property name="illegalClassNames" value="java.lang.Error,java.lang.RuntimeException"/>
+        </module>
+        <module name="DeclarationOrder"/>
+        <module name="UnnecessaryParentheses"/>
+        <module name="StringLiteralEquality"/>
+        <module name="VisibilityModifier">
+            <property name="packageAllowed" value="true"/>
+            <property name="protectedAllowed" value="true"/>
+        </module>
+        <module name="HideUtilityClassConstructor"/>
+        <module name="ThrowsCount">
+            <property name="max" value="5"/>
+        </module>
+        <module name="InterfaceIsType"/>
+        <module name="UpperEll"/>
+        <module name="Indentation"/>
+        <module name="UncommentedMain">
+            <property name="excludedClasses" value="\.[a-zA-Z]*Main$"/>
+        </module>
+        <module name="Regexp">
+            <property name="format" value="一句话功能简述"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="请添加简单功能描述"/>
+        </module>
+        <module name="Regexp">
+            <property name="format" value="功能详细描述"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="请添加详细功能描述"/>
+        </module>
+        <module name="AvoidStarImport"/>
+        <module name="RedundantImport"/>
+        <module name="UnusedImports"/>
+        <module name="ImportOrder">
+            <property name="groups" value="android,androidx,com.android,huawei,com.huawei,com,*,net,org,javacard,/^java\./,javax"/>
+            <property name="ordered" value="true"/>
+            <property name="separated" value="true"/>
+            <property name="option" value="top"/>
+            <property name="useContainerOrderingForStatic" value="true"/>
+            <property name="sortStaticImportsAlphabetically" value="true"/>
+        </module>
+        <module name="EmptyLineSeparator">
+            <property name="allowNoEmptyLineBetweenFields" value="true" />
+            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+            <property name="severity" value="warning"/>
+        </module>
+        <module name="ConstantName">
+            <property name="format" value="(^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$)|(^log$)|(^logger$)"/>
+        </module>
+        <module name="LocalFinalVariableName">
+            <property name="format" value="(^[a-z]([a-z0-9]+[A-Z]?)*$)"/>
+        </module>
+        <module name="LocalVariableName">
+            <property name="format" value="(^m[a-zA-Z0-9]+$)|(^s[a-zA-Z0-9]+$)|(^[a-ln-rt-z]([a-z0-9]+[A-Z]?)*$)"/>
+        </module>
+        <module name="MemberName">
+            <property name="format" value="(^m[a-zA-Z0-9]+$)|(^s[a-zA-Z0-9]+$)|(^[a-ln-rt-z]([a-z0-9]+[A-Z]?)*$)"/>
+        </module>
+        <module name="MethodName">
+            <property name="format" value="^[a-z]([a-z0-9]+[A-Z]?)*$"/>
+        </module>
+        <module name="PackageName">
+            <property name="format" value="^com.huawei(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+        <module name="ParameterName">
+            <property name="format" value="(^[a-z]([a-z0-9]+[A-Z]?)*$)"/>
+        </module>
+        <module name="StaticVariableName">
+            <property name="format" value="(^[a-rt-z]([a-z0-9]+[A-Z]?)*$)|(^s[a-zA-Z0-9]+$)|(^m[a-zA-Z0-9]+$)"/>
+        </module>
+        <module name="TypeName">
+            <property name="format" value="^[A-Z]([a-z0-9]+[A-Z]?)*$"/>
+        </module>
+        <module name="AtclauseOrder"/>
+        <module name="ArrayTypeStyle"/>
+        <module name="VariableDeclarationUsageDistance">
+            <property name="allowedDistance" value="3"/>
+			<property name="severity" value="warning"/>
+        </module>
+        <module name="AnnotationLocation">
+            <property name="allowSamelineMultipleAnnotations" value="false"/>
+            <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
+            <property name="allowSamelineParameterizedAnnotation" value="false"/>
+        </module>
+        <module name="FallThrough">
+            <property name="checkLastCaseGroup" value = "false"/>
+            <property name="reliefPattern" value="^.*[fallthru|falls|fall]?\s+through.*$"/>
+        </module>
+        <module name="MissingSwitchDefault"/>
+        <module name="DefaultComesLast"/>
+        <module name="EmptyStatement"/>
+        <module name="AvoidNestedBlocks">
+            <property name="allowInSwitchCase" value="true"/>
+        </module>
+        <module name="NestedTryDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="NestedIfDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="NestedForDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="ParameterAssignment"/>
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true"/>
+            <property name="ignoreSetter" value="true"/>
+            <property name="ignoreAbstractMethods" value="true"/>
+            <property name="setterCanReturnItsClass" value="true"/>
+        </module>
+        <module name="EqualsHashCode"/>
+        <module name="RedundantModifier"/>
+        <module name="MissingOverride"/>
+        <module name="IllegalCatch">
+            <property name="illegalClassNames"
+                  value="java.lang.Exception,
+                         java.lang.Throwable,
+                         java.lang.RuntimeException,
+                         java.lang.NullPointerException"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.yield\(\)"/>
+            <property name="message" value="编程规范-规则8.1.4 : 禁止使用yield方法"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.wait\("/>
+            <property name="message" value="编程规范-规则8.1.5 : 禁止使用wait方法"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.setPriority\("/>
+            <property name="message" value="编程规范-规则8.1.4 : 禁止使用setPriority方法"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.notify\(\)"/>
+            <property name="message" value="编程规范-规则8.1.5 : 禁止使用notify方法"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.notifyAll\(\)"/>
+            <property name="message" value="编程规范-规则8.1.5: 禁止使用notifyAll方法"/>
+        </module>
+        <module name="BooleanExpressionComplexity">
+            <property name="max" value="3"/>
+        </module>
+        <module name="SuppressWarnings"/>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="System\.gc\(\)"/>
+            <property name="message" value="编程规范-规则8.7.5: 禁止使用主动GC"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="finalize\(\)"/>
+            <property name="message" value="编程规范-规则8.7.6 : 禁止使用finalize方法"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\\n|\\r"/>
+            <property name="message" value="编程规范-规则8.8.1: 请使用System.lineSeparator"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="(\.getBytes\(\))|(\.bodyAsString\(\))|(new Scanner\(new File\([\w]+\)\))|(new Scanner\([\w]+\))"/>
+            <property name="message" value="编程规范-规则8.9.2: 不要依赖默认编码格式，请显示指定为UTF-8"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="(\.getBytes\(\))|(\.bodyAsString\(\))|(new InputStreamReader\(new [\w\.]+\([\w]+\)\))|(new InputStreamReader\([\w]+\))"/>
+            <property name="message" value="编程规范-规则8.9.2: 不要依赖默认编码格式，请显示指定为UTF-8"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.(toLowerCase|toUpperCase)\((Locale\.[^ER][A-Z]+)?\)"/>
+            <property name="message" value="编程规范-规则8.9.3: 字符串大小写转换、数字格式化为西方数字时，必须加上Locale.ROOT或Locale.ENGLISH"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="String\.format\(((Locale\.[^ER][A-Z]+)|(&quot;.*&quot;)),\s.*\)"/>
+            <property name="message" value="编程规范-规则8.9.3: 字符串大小写转换、数字格式化为西方数字时，必须加上Locale.ROOT或Locale.ENGLISH"/>
+        </module>
+        <module name="OverloadMethodsDeclarationOrder"/>
+        <module name="InnerAssignment"/>
+        <module name="NoFinalizer"/>
+        <module name="ModifiedControlVariable"/>
+        <module name="SingleSpaceSeparator">
+            <property name="validateComments" value="true"/>
+        </module>
+        <module name="MultipleStringLiterals">
+            <property name="allowedDuplicates" value="2"/>
+            <property name="ignoreStringsRegexp"  value='^(("")|(", "))$'/>
+        </module>
+        <module name="EqualsAvoidNull"/>
+        <module name="CommentsIndentation"/>
+        <module name="AbbreviationAsWordInName">
+            <property name="allowedAbbreviationLength" value="0"/>
+        </module>
+    </module>
+</module>
